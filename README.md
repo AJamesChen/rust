@@ -63,6 +63,19 @@ Run Clippy lints:
 cargo clippy --all-targets --all-features
 ```
 
+## CI/CD
+
+GitHub Actions runs the `Rust CI` workflow on pushes and pull requests. The
+workflow installs the stable Rust toolchain with `rustfmt` and `clippy`, caches
+Cargo dependencies, then runs:
+
+```sh
+cargo fmt --all -- --check
+cargo clippy --workspace --all-targets --all-features -- -D warnings
+cargo build --workspace --verbose
+cargo test --workspace --verbose
+```
+
 ## Adding Exercises
 
 Add new Codility exercises under `codility/src`, grouped by lesson. Expose each
