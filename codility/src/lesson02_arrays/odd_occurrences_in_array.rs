@@ -6,6 +6,8 @@ Find the value that occurs an odd number of times.
 */
 
 pub fn solution(a: Vec<i32>) -> i32 {
+    // `fold` starts with 0 and XORs each value into the accumulator. Equal
+    // values cancel each other out, leaving only the value with no pair.
     a.into_iter().fold(0, |unpaired, value| unpaired ^ value)
 }
 
