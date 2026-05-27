@@ -18,7 +18,8 @@ programming exercises.
 │       │   └── binary_gap.rs
 │       └── lesson02_arrays/
 │           ├── mod.rs
-│           └── cyclic_rotation.rs
+│           ├── cyclic_rotation.rs
+│           └── odd_occurrences_in_array.rs
 └── README.md
 ```
 
@@ -34,6 +35,7 @@ Implemented exercises:
   - Binary Gap
 - Lesson 02: Arrays
   - Cyclic Rotation
+  - Odd Occurrences In Array
 
 ## Requirements
 
