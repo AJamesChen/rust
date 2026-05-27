@@ -13,9 +13,12 @@ programming exercises.
 │   ├── Cargo.toml          # Codility practice crate
 │   └── src/
 │       ├── lib.rs
-│       └── lesson01_iterations/
+│       ├── lesson01_iterations/
+│       │   ├── mod.rs
+│       │   └── binary_gap.rs
+│       └── lesson02_arrays/
 │           ├── mod.rs
-│           └── binary_gap.rs
+│           └── cyclic_rotation.rs
 └── README.md
 ```
 
@@ -29,6 +32,8 @@ Implemented exercises:
 
 - Lesson 01: Iterations
   - Binary Gap
+- Lesson 02: Arrays
+  - Cyclic Rotation
 
 ## Requirements
 
