@@ -1,6 +1,18 @@
 [workspace]
-resolver = "2"
-
 members = [
     "codility",
+    "embedded-rust/ch2-app",
 ]
+resolver = "2"
+
+# Embedded-friendly build profiles. Cargo reads profiles only from the
+# workspace root, not from individual workspace members.
+[profile.dev]
+opt-level = "s"
+codegen-units = 1
+
+[profile.release]
+opt-level = "s"
+codegen-units = 1
+lto = "fat"
+debug = 2

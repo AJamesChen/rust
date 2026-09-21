@@ -16,6 +16,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
+          targets: thumbv7m-none-eabi
 
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
@@ -23,11 +24,14 @@ jobs:
       - name: Check formatting
         run: cargo fmt --all -- --check
 
-      - name: Run Clippy
-        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+      - name: Run Clippy for host crate
+        run: cargo clippy -p codility --all-targets --all-features -- -D warnings
 
-      - name: Build workspace
-        run: cargo build --workspace --verbose
+      - name: Run Clippy for embedded crate
+        run: cargo clippy -p ch2-app --target thumbv7m-none-eabi --lib --bins --all-features -- -D warnings
 
-      - name: Run tests
-        run: cargo test --workspace --verbose
+      - name: Check embedded crate
+        run: cargo check -p ch2-app --target thumbv7m-none-eabi
+
+      - name: Run host tests
+        run: cargo test -p codility --verbose

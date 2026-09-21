@@ -1,8 +1,7 @@
 # Rust Practice
 
 This repository contains Rust practice code organized as a Cargo workspace.
-The current workspace member is `codility`, a library crate for Codility-style
-programming exercises.
+It includes host-side programming exercises and embedded Rust examples.
 
 ## Repository Layout
 
@@ -20,6 +19,8 @@ programming exercises.
 │           ├── mod.rs
 │           ├── cyclic_rotation.rs
 │           └── odd_occurrences_in_array.rs
+├── embedded-rust/
+│   └── ch2-app/            # no_std Cortex-M application examples
 └── README.md
 ```
 
@@ -37,25 +38,32 @@ Implemented exercises:
   - Cyclic Rotation
   - Odd Occurrences In Array
 
+### `ch2-app`
+
+A `no_std` Cortex-M application based on the Knurling embedded app template.
+It contains small examples for `defmt` logging, formatting, panic handling,
+bitfields, and stack-overflow behaviour.
+
 ## Requirements
 
-- Rust toolchain with Cargo
+- Rust toolchain with Cargo, rustfmt, and Clippy
+- A Cortex-M compilation target; CI checks `thumbv7m-none-eabi`
 - Edition: Rust 2024
 
 Install Rust with [rustup](https://rustup.rs/) if it is not already available.
 
 ## Common Commands
 
-Run the full test suite:
+Run the host-side tests:
 
 ```sh
-cargo test
+cargo test -p codility
 ```
 
-Check that the workspace builds:
+Check the embedded examples without requiring target hardware:
 
 ```sh
-cargo check
+cargo check -p ch2-app --target thumbv7m-none-eabi
 ```
 
 Format the code:
@@ -72,15 +80,16 @@ cargo clippy --all-targets --all-features
 
 ## CI/CD
 
-GitHub Actions runs the `Rust CI` workflow on pushes and pull requests. The
-workflow installs the stable Rust toolchain with `rustfmt` and `clippy`, caches
-Cargo dependencies, then runs:
+GitHub Actions runs the `Rust CI` workflow on pushes and pull requests. It tests
+the host crate normally and checks the embedded crate for a Cortex-M target
+without trying to execute target tests on the CI host.
 
 ```sh
 cargo fmt --all -- --check
-cargo clippy --workspace --all-targets --all-features -- -D warnings
-cargo build --workspace --verbose
-cargo test --workspace --verbose
+cargo clippy -p codility --all-targets --all-features -- -D warnings
+cargo clippy -p ch2-app --target thumbv7m-none-eabi --lib --bins --all-features -- -D warnings
+cargo check -p ch2-app --target thumbv7m-none-eabi
+cargo test -p codility --verbose
 ```
 
 ## Adding Exercises
