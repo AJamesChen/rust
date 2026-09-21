@@ -20,7 +20,8 @@ It includes host-side programming exercises and embedded Rust examples.
 │           ├── cyclic_rotation.rs
 │           └── odd_occurrences_in_array.rs
 ├── embedded-rust/
-│   └── ch2-app/            # no_std Cortex-M application examples
+│   ├── ch2-app/            # no_std Cortex-M application examples
+│   └── ch2-app2/           # STM32F3DISCOVERY quickstart application
 └── README.md
 ```
 
@@ -44,10 +45,15 @@ A `no_std` Cortex-M application based on the Knurling embedded app template.
 It contains small examples for `defmt` logging, formatting, panic handling,
 bitfields, and stack-overflow behaviour.
 
+### `ch2-app2`
+
+A second Cortex-M quickstart application configured for the STM32F3DISCOVERY
+board and its STM32F303VC microcontroller.
+
 ## Requirements
 
 - Rust toolchain with Cargo, rustfmt, and Clippy
-- A Cortex-M compilation target; CI checks `thumbv7m-none-eabi`
+- The `thumbv7em-none-eabihf` Cortex-M compilation target
 - Edition: Rust 2024
 
 Install Rust with [rustup](https://rustup.rs/) if it is not already available.
@@ -63,7 +69,7 @@ cargo test -p codility
 Check the embedded examples without requiring target hardware:
 
 ```sh
-cargo check -p ch2-app --target thumbv7m-none-eabi
+cargo check -p ch2-app -p ch2-app2 --target thumbv7em-none-eabihf
 ```
 
 Format the code:
@@ -87,8 +93,8 @@ without trying to execute target tests on the CI host.
 ```sh
 cargo fmt --all -- --check
 cargo clippy -p codility --all-targets --all-features -- -D warnings
-cargo clippy -p ch2-app --target thumbv7m-none-eabi --lib --bins --all-features -- -D warnings
-cargo check -p ch2-app --target thumbv7m-none-eabi
+cargo clippy -p ch2-app -p ch2-app2 --target thumbv7em-none-eabihf --lib --bins --all-features -- -D warnings
+cargo check -p ch2-app -p ch2-app2 --target thumbv7em-none-eabihf
 cargo test -p codility --verbose
 ```
 

@@ -16,7 +16,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
-          targets: thumbv7m-none-eabi
+          targets: thumbv7em-none-eabihf
 
       - name: Cache Rust dependencies
         uses: Swatinem/rust-cache@v2
@@ -27,11 +27,11 @@ jobs:
       - name: Run Clippy for host crate
         run: cargo clippy -p codility --all-targets --all-features -- -D warnings
 
-      - name: Run Clippy for embedded crate
-        run: cargo clippy -p ch2-app --target thumbv7m-none-eabi --lib --bins --all-features -- -D warnings
+      - name: Run Clippy for embedded crates
+        run: cargo clippy -p ch2-app -p ch2-app2 --target thumbv7em-none-eabihf --lib --bins --all-features -- -D warnings
 
-      - name: Check embedded crate
-        run: cargo check -p ch2-app --target thumbv7m-none-eabi
+      - name: Check embedded crates
+        run: cargo check -p ch2-app -p ch2-app2 --target thumbv7em-none-eabihf
 
       - name: Run host tests
         run: cargo test -p codility --verbose
