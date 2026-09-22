@@ -52,6 +52,11 @@ path = "src/bin/panic.rs"
 test = false
 
 [[bin]]
+name = "semihosting"
+path = "src/bin/semihosting.rs"
+test = false
+
+[[bin]]
 name = "uart"
 path = "src/bin/uart.rs"
 test = false
@@ -70,7 +75,7 @@ cortex-m-rt = "0.7"
 defmt = "1.0"
 defmt-rtt = "1.0"
 panic-probe = { version = "1.0", features = ["print-defmt"] }
-semihosting = "0.1.20"
+semihosting = { version = "0.1.20", features = ["stdio"] }
 stm32f3 = { version = "0.16", features = ["stm32f303"] }
 # TODO(4) enter your HAL here
 # some-hal = "1.2.3"
