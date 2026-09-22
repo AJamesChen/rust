@@ -6,6 +6,47 @@
 [`defmt`]: https://github.com/knurling-rs/defmt
 [`flip-link`]: https://github.com/knurling-rs/flip-link
 
+## UART on STM32F3DISCOVERY
+
+The [`uart` example](src/bin/uart.rs) sends `Hello, World!` repeatedly at
+115200 baud, 8 data bits, no parity, and 1 stop bit. It uses STM32F303 USART1:
+PC4 is TX and PC5 is RX.
+
+On STM32F3DISCOVERY PCB revision C or newer, the on-board ST-LINK/V2-B connects
+these pins to its USB virtual COM port through solder bridges SB13 and SB15.
+With those bridges fitted, no external USB-UART cable is needed. Earlier board
+revisions need a 3.3 V USB-UART adapter connected to PC4 (adapter RX), PC5
+(adapter TX), and GND. See the [ST board manual](https://www.st.com/resource/en/user_manual/dm00063382.pdf)
+for the board revision and bridge connections.
+
+From this directory, flash and run the example:
+
+```sh
+cargo run --bin uart
+```
+
+In another terminal, find the virtual COM device and open it with minicom:
+
+```sh
+ls -l /dev/serial/by-id/
+minicom -D /dev/ttyACM0 -b 115200 -8
+```
+
+Use the actual device path if it differs from `/dev/ttyACM0`. Set hardware flow
+control to **No** in minicom's serial port setup (`Ctrl-A`, then `O`) if no text
+appears. Exit minicom with `Ctrl-A`, then `X`. The text appears on the serial
+port, not in the `probe-rs` RTT console. `cargo run` remains attached because
+the firmware sends forever; `Ctrl-C` stops the host command while the firmware
+continues running on the board.
+
+If flashing reports `SwdDpWait`, check board power and the two CN4 jumpers that
+connect the on-board ST-LINK to the STM32F303. To check the connection without
+flashing, run the following command (it resets the target):
+
+```sh
+probe-rs info --verbose --protocol swd --connect-under-reset
+```
+
 ## Dependencies
 
 ### 1. `flip-link`:

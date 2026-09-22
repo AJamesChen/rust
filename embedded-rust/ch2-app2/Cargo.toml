@@ -51,6 +51,11 @@ name = "panic"
 path = "src/bin/panic.rs"
 test = false
 
+[[bin]]
+name = "uart"
+path = "src/bin/uart.rs"
+test = false
+
 [lib]
 harness = false
 
