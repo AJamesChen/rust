@@ -19,5 +19,7 @@ fn main() -> ! {
         // Loop
     }
 
-    loop {}
+    loop {
+        cortex_m::asm::wfi();
+    }
 }
