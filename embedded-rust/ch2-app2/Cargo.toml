@@ -32,6 +32,11 @@ path = "src/bin/levels.rs"
 test = false
 
 [[bin]]
+name = "micro-arch"
+path = "src/bin/micro-arch.rs"
+test = false
+
+[[bin]]
 name = "overflow"
 path = "src/bin/overflow.rs"
 test = false
