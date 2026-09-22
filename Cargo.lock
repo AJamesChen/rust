@@ -47,6 +47,7 @@ dependencies = [
  "defmt-test",
  "panic-probe",
  "semihosting",
+ "stm32f3",
 ]
 
 [[package]]
@@ -275,6 +276,18 @@ name = "semver-parser"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "388a1df253eca08550bef6c72392cfe7c30914bf41df5269b68cbd6ff8f570a3"
+
+[[package]]
+name = "stm32f3"
+version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ab8b142c2c77e4d96243fb3604122487c8910ed5910cb1e5b4f97dc30020fe6a"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "critical-section",
+ "vcell",
+]
 
 [[package]]
 name = "syn"

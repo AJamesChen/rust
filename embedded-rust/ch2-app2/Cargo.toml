@@ -42,6 +42,11 @@ path = "src/bin/overflow.rs"
 test = false
 
 [[bin]]
+name = "pac"
+path = "src/bin/pac.rs"
+test = false
+
+[[bin]]
 name = "panic"
 path = "src/bin/panic.rs"
 test = false
@@ -61,6 +66,7 @@ defmt = "1.0"
 defmt-rtt = "1.0"
 panic-probe = { version = "1.0", features = ["print-defmt"] }
 semihosting = "0.1.20"
+stm32f3 = { version = "0.16", features = ["stm32f303"] }
 # TODO(4) enter your HAL here
 # some-hal = "1.2.3"
 
