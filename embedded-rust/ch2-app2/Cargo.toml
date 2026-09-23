@@ -27,6 +27,11 @@ path = "src/bin/format.rs"
 test = false
 
 [[bin]]
+name = "hard-fault"
+path = "src/bin/hard-fault.rs"
+test = false
+
+[[bin]]
 name = "hello"
 path = "src/bin/hello.rs"
 test = false
