@@ -17,6 +17,11 @@ path = "src/bin/bitfield.rs"
 test = false
 
 [[bin]]
+name = "exception"
+path = "src/bin/exception.rs"
+test = false
+
+[[bin]]
 name = "format"
 path = "src/bin/format.rs"
 test = false
@@ -49,6 +54,11 @@ test = false
 [[bin]]
 name = "panic"
 path = "src/bin/panic.rs"
+test = false
+
+[[bin]]
+name = "panic-index"
+path = "src/bin/panic-index.rs"
 test = false
 
 [[bin]]
