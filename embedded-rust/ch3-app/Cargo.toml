@@ -43,6 +43,11 @@ path = "src/bin/panic.rs"
 test = false
 
 [[bin]]
+name = "singleton"
+path = "src/bin/singleton.rs"
+test = false
+
+[[bin]]
 name = "systick"
 path = "src/bin/systick.rs"
 test = false
