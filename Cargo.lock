@@ -51,6 +51,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "ch3-app"
+version = "0.1.0"
+dependencies = [
+ "cortex-m",
+ "cortex-m-rt",
+ "defmt 1.1.1",
+ "defmt-rtt",
+ "defmt-test",
+ "panic-probe",
+ "semihosting",
+ "volatile-register",
+]
+
+[[package]]
 name = "codility"
 version = "0.1.0"
 

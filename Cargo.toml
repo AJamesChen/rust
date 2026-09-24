@@ -3,6 +3,7 @@ members = [
     "codility",
     "embedded-rust/ch2-app",
     "embedded-rust/ch2-app2",
+    "embedded-rust/ch3-app",
 ]
 resolver = "2"
 
